@@ -36,4 +36,14 @@ typedef struct s_vars
 	t_cor	zoom;
 }			t_vars;
 
+void	ft_draw_pixel(t_vars *vars);
+void	ft_get_map(t_vars *vars, int i, int j);
+void	ft_put_colour(t_vars *vars, int n, int i, int j);
+double	ft_map(double i, double size, double start, double end);
+void	ft_mandel_alg(t_vars *vars);
+int		ft_zoom(int keycode, int x, int y, t_vars *vars);
+void	ft_move(t_vars *vars, int xy, int direction);
+void	ft_move_a(t_vars *vars, int direction);
+void	ft_move_b(t_vars *vars, int direction);
+
 #endif

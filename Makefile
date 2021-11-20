@@ -1,6 +1,8 @@
 NAME = fract-ol
 
-SRC = 	main.c
+SRC = 	main.c \
+		draw.c \
+		zoom.c
 
 OBJ = $(SRC:%.c=%.o)
 
