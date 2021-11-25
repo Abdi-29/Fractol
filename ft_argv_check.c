@@ -43,3 +43,9 @@ void	ft_convert(char **n, t_dbt *ptr)
 	ptr->x1 = ft_atof(n[2]);
 	ptr->x2 = ft_atof(n[3]);
 }
+
+void	ft_print_error(void)
+{
+	ft_putendl_fd("USAGE: \n./fractol j <double> <double>", 1);
+	ft_putendl_fd("./fractol m", 1);
+}

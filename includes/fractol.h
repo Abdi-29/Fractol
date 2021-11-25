@@ -67,5 +67,6 @@ int		ft_j_check(char **argv, int len);
 int		ft_control(char *str);
 int		ft_get_colour(int range);
 void	ft_put_colour(t_vars *vars, int n, int i, int j);
+void	ft_print_error(void);
 
 #endif

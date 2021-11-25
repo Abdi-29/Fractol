@@ -49,8 +49,7 @@ int	main(int argc, char **argv)
 	if ((argc < 2 || argc > 4) || (ft_strcmp(argv[1], "m") != 0 \
 		&& ft_strcmp(argv[1], "j") != 0))
 	{
-		ft_putendl_fd("USAGE: \n./fractol j <double> <double>", 1);
-		ft_putendl_fd("./fractol m", 1);
+		ft_print_error();
 		exit (1);
 	}
 	if (ft_strcmp(argv[1], "j") == 0 && ft_j_check(argv, argc))
