@@ -49,8 +49,8 @@ int	main(int argc, char **argv)
 	if ((argc < 2 || argc > 4) || (ft_strcmp(argv[1], "m") != 0 \
 		&& ft_strcmp(argv[1], "j") != 0))
 	{
-		printf("USAGE: ./fracol j <decimal> <decimal> \n \
-		./fractol m");
+		ft_putendl_fd("USAGE: \n./fractol j <double> <double>", 1);
+		ft_putendl_fd("./fractol m", 1);
 		exit (1);
 	}
 	if (ft_strcmp(argv[1], "j") == 0 && ft_j_check(argv, argc))
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	else if (ft_strcmp(argv[1], "m") != 0 || argc != 2)
 		exit(1);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, WIN_SIZE, WIN_SIZE, "let'start");
+	vars.win = mlx_new_window(vars.mlx, WIN_SIZE, WIN_SIZE, "fractol");
 	set_cor(&vars.zoom, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, 4, 0, ft_zoom, &vars);

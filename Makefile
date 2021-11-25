@@ -1,6 +1,6 @@
 NAME = fract-ol
 
-SRC = 	main.c \
+SRC = 	fractol.c \
 		draw.c \
 		zoom.c \
 		ft_argv_check.c \
@@ -9,8 +9,10 @@ INCLUDE = -I ./includes
 OBJ = $(SRC:%.c=%.o)
 
 LIBFT_DIR = ./libft
+MLX_DIR = ./mlx
 
 LIBFT = $(LIBFT_DIR)/libft.a
+MLX = $(MLX_DIR)/libmlx.dylib
 
 # COLORS
 PINK    = \x1b[35m
@@ -22,7 +24,7 @@ MAGENTA = \x1b[35m
 
 RESET   = \x1b[0m
 
-FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
@@ -31,7 +33,7 @@ WIN = -D WIN_SIZE=400
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
 	gcc $(OBJ) $(WIN) -L. $(MLXFLAGS) $(FLAGS)  $(LIBFT) -o $(NAME) 
 
 %.o: %.c
@@ -39,10 +41,14 @@ $(NAME): $(OBJ) $(LIBFT)
 
 $(LIBFT):
 		$(MAKE) -C $(LIBFT_DIR)
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+	cp $(MLX) .
 
 clean:
 	$(MAKE) fclean -C $(LIBFT_DIR)
-	rm -f $(OBJ)
+	$(MAKE) clean -C $(MLX_DIR)
+	rm -f $(OBJ) libmlx.dylib
 
 fclean: clean
 	rm -f $(NAME)
