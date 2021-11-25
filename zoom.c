@@ -65,4 +65,6 @@ int	ft_zoom(int keycode, int x, int y, t_vars *vars)
 		vars->zoom.z_iny += step_y * 0.1;
 		vars->zoom.z_outy -= step_y * 0.1;
 	}
+	x = y;
+	return (0);
 }
