@@ -3,9 +3,9 @@
 # include <stdlib.h>
 # include <math.h>
 # include <unistd.h>
-# define WIN_SIZE 400
 # define MAX_ITER 100
-
+# define WIN_SIZE_X 1960
+# define WIN_SIZE_Y 1080
 typedef enum e_keys
 {
 	KEY_ESC = 53,
@@ -29,6 +29,14 @@ typedef struct s_cor
 	double	z_outy;
 }			t_cor;
 
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 typedef struct s_dbt
 {
 	double	x1;
@@ -42,6 +50,7 @@ typedef struct s_vars
 	void	*win;
 	t_cor	zoom;
 	t_dbt	j_set;
+	t_data	b_img;
 }			t_vars;
 
 void	ft_draw_pixel(t_vars *vars);

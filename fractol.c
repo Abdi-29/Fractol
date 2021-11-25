@@ -30,10 +30,10 @@ void	set_cor(t_cor *cor, double value)
 	cor->a_cpy = value;
 	cor->b = value;
 	cor->b_cpy = value;
-	cor->z_inx = 1;
-	cor->z_outx = -1;
-	cor->z_iny = 1;
-	cor->z_outy = -1;
+	cor->z_inx = WIN_SIZE_X / 100;
+	cor->z_outx = -(WIN_SIZE_X / 100);
+	cor->z_iny = WIN_SIZE_Y / 100;
+	cor->z_outy = -(WIN_SIZE_Y / 100);
 }
 
 int	loop(t_vars *vars)
@@ -58,12 +58,16 @@ int	main(int argc, char **argv)
 	else if (ft_strcmp(argv[1], "m") != 0 || argc != 2)
 		exit(1);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, WIN_SIZE, WIN_SIZE, "fractol");
+	vars.win = mlx_new_window(vars.mlx, WIN_SIZE_X, WIN_SIZE_Y, "fractol");
+	vars.b_img.img = mlx_new_image(vars.mlx, WIN_SIZE_X, WIN_SIZE_Y);
 	set_cor(&vars.zoom, 0);
+	vars.b_img.addr = mlx_get_data_addr(vars.b_img.img, \
+	&vars.b_img.bits_per_pixel, &vars.b_img.line_length, &vars.b_img.endian);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, 4, 0, ft_zoom, &vars);
 	mlx_hook(vars.win, 17, 0, ft_close, &vars);
 	mlx_loop_hook(vars.mlx, loop, &vars);
 	ft_draw_pixel(&vars);
+	mlx_put_image_to_window(vars.mlx, vars.win, vars.b_img.img, 0, 0);
 	mlx_loop(vars.mlx);
 }

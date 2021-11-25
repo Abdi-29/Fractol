@@ -30,8 +30,8 @@ double	ft_map(double i, double size, double start, double end)
 
 void	ft_get_map(t_vars *vars, int i, int j)
 {
-	vars->zoom.a = ft_map(i, WIN_SIZE, vars->zoom.z_outx, vars->zoom.z_inx);
-	vars->zoom.b = ft_map(j, WIN_SIZE, vars->zoom.z_outy, vars->zoom.z_iny);
+	vars->zoom.a = ft_map(i, WIN_SIZE_X, vars->zoom.z_outx, vars->zoom.z_inx);
+	vars->zoom.b = ft_map(j, WIN_SIZE_Y, vars->zoom.z_outy, vars->zoom.z_iny);
 	vars->zoom.a_cpy = vars->zoom.a;
 	vars->zoom.b_cpy = vars->zoom.b;
 }
@@ -43,10 +43,10 @@ void	ft_draw_pixel(t_vars *vars)
 	int	n;
 
 	i = 0;
-	while (i < WIN_SIZE)
+	while (i < WIN_SIZE_X)
 	{
 		j = 0;
-		while (j < WIN_SIZE)
+		while (j < WIN_SIZE_Y)
 		{
 			n = 0;
 			ft_get_map(vars, i, j);
